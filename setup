@@ -115,6 +115,7 @@ do
 		echo "INSTALLING WIRESHARK"
 		echo "***********************"
 		sudo apt-get -y install wireshark
+                sudo apt-get -y install tshark
 
 		#echo "INSTALLING BAOBAB"
 		#echo "*****************"

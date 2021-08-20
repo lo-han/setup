@@ -1,0 +1,160 @@
+#!/bin/bash
+
+#DISCLAIMER:
+# THIS GIGANTIC SCRIPTS WAS MADE FOR A DEBIAN-BASED LINUX DISTRO ALONG WITH GNOME DESKTOP
+
+pullDocker(){
+	docker pull docker.bintray.io/jfrog/artifactory-cpp-ce
+
+	docker pull sourcerer2/geolocation
+	docker pull sourcerer2/alpinito
+	docker pull sourcerer2/tictactoe:1.1
+
+	docker pull alpine && docker pull httpd && docker pull python && docker pull ubuntu
+}
+
+#echo "$USER  ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/$USER
+
+
+for options in $@
+do
+	if [ $options == "--help" ]
+	then
+		echo "Command example: bash setup_env [options]"
+		echo "Options:"
+		echo "	update"
+		echo "	dev_tools"
+		echo "	containers"
+		echo "	cl_tools"
+		echo "	gu_tools"
+		echo "	shell"
+		echo "	env_settings"
+		echo "	upgrade"
+		echo ""
+		exit 0
+
+	elif [ $options == "update" ]
+	then
+		echo "UPDATING"
+		echo "************"
+		sudo apt-get -y update
+
+		echo "INSTALLING ESSENTIALS"
+		echo "*********************"
+		sudo apt-get -y install software-properties-common apt-transport-https curl build-essential gpg snapd neofetch
+
+	elif [ $options == "dev_tools" ]
+	then
+		echo "INSTALLING DEVELOPER TOOLS"
+		echo "**************************"
+		#sudo add-apt-repository -y ppa:deadsnakes/ppa
+		sudo apt-get -y install python3 ipython3 python3-pip
+		sudo apt-get -y install gcc gdb moreutils cmake make
+		sudo apt-get -y install git-all vim
+		sudo apt-get -y install clang
+		sudo snap install valgrind --classic
+		sudo apt-get -y install nasm
+		#sudo apt-get -y install default-jdk default-jre
+		pip3 install virtualenv setuptools build pytest twine black pylint --upgrade
+		sudo pip3 install conan --upgrade
+		python3 -m pip install mypy
+		python3 -m pip install qrcode[pil]
+
+	elif [ $options == "containers" ]
+	then
+		echo "INSTALLING DOCKER"
+        	echo "*****************"
+        	sudo apt-get install -y docker.io
+		sudo groupadd docker && sudo gpasswd -a $USER docker
+		#pullDocker
+
+		echo "INSTALLING QEMU"
+		echo "***************"
+		sudo apt-get -y install qemu-system-x86
+		sudo apt-get -y install qemu samba samba-client
+
+	elif [ $options == "gu_tools" ]
+	then
+		echo "INSTALLING VSCODE"
+		echo "*****************"
+		sudo apt-get -y install code
+
+		#echo "INSTALLING BRAVE BROWSER"
+		#echo "************************"
+		#sudo snap install brave
+
+		#echo "INSTALLING SPOTIFY"
+		#echo "*****************"
+		#sudo snap install spotify
+
+		#echo "INSTALLING TORRENT SERVER"
+		#echo "*************************"
+		#sudo add-apt-repository -y ppa:qbittorrent-team/qbittorrent-stable && sudo apt-get update
+		#sudo apt-get install -y qbittorrent
+
+		echo "INSTALLING WIRESHARK"
+		echo "***********************"
+		sudo apt-get -y install wireshark
+
+		echo "INSTALLING BAOBAB"
+		echo "*****************"
+		sudo apt-get install -y baobab
+
+		echo "INSTALLING SYSTEM MONITOR"
+		echo "*************************"
+		sudo apt-get install -y gnome-system-monitor
+
+		echo "INSTALLING DISK UTILITY"
+		echo "***********************"
+		sudo apt-get install -y gnome-disk-utility
+		sudo apt-get install -y gparted
+		sudo apt-get install -y parted
+
+	elif [ $options == "shell" ]
+	then
+		echo "INSTALLING SHELL"
+		echo "*************************"
+		sudo apt -y update
+		sudo apt -y upgrade
+		sudo apt -y dist-upgrade
+		#sudo apt install -y xserver-xorg kde-plasma-desktop
+		#sudo apt install -y xorg gnome gnome-shell --no-install-recommends
+
+	elif [ $options == "cl_tools" ]
+	then
+
+		echo "INSTALLING NETWORK PACKAGES"
+		echo "***************************"
+		sudo apt-get -y install net-tools
+                sudo apt-get -y install iptables netcat
+		sudo apt-get -y install openssh-client openssh-server
+                sudo apt-get -y install curl wget
+		sudo apt-get -y install traceroute
+
+		echo "INSTALLING UTILITIES"
+		echo "********************"
+		sudo apt-get -y install entr #run arbitrary commands when files change
+		sudo apt-get -y install iftop #network statistics
+
+	elif [ $options == "env_settings" ]
+	then
+		echo "SETTING .bashrc"
+		echo "***************"
+		printf "export PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin\n" >> $HOME/.bashrc
+		echo "export PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin"
+
+		printf "export KING='/media/$USER/king'\n" >> $HOME/.bashrc
+		echo "export KING='/media/$USER/king'"
+
+		printf "export STORE='/media/$USER/backup'\n" >> $HOME/.bashrc
+		echo "export STORE='/media/$USER/backup'"
+
+	elif [ $options == "upgrade" ]
+	then
+		echo "UPGRADING"
+		echo "************"
+		sudo apt-get -y dist-upgrade
+		sudo apt-get -y autoremove
+	fi
+done
+

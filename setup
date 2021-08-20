@@ -65,10 +65,10 @@ do
 		sudo groupadd docker && sudo gpasswd -a $USER docker
 		#pullDocker
 
-		echo "INSTALLING QEMU"
-		echo "***************"
-		sudo apt-get -y install qemu-system-x86
-		sudo apt-get -y install qemu samba samba-client
+		#echo "INSTALLING QEMU"
+		#echo "***************"
+		#sudo apt-get -y install qemu-system-x86
+		#sudo apt-get -y install qemu samba samba-client
 
 	elif [ $options == "gu_tools" ]
 	then

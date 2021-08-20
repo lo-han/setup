@@ -41,7 +41,7 @@ do
 
 		echo "INSTALLING ESSENTIALS"
 		echo "*********************"
-		sudo apt-get -y install software-properties-common apt-transport-https curl build-essential gpg snapd neofetch
+		sudo apt-get -y install software-properties-common apt-transport-https curl build-essential gpg snapd neofetch #flatpak
 
 	elif [ $options == "dev_tools" ]
 	then
@@ -133,8 +133,8 @@ do
 
 		echo "INSTALLING UTILITIES"
 		echo "********************"
-		sudo apt-get -y install entr #run arbitrary commands when files change
-		sudo apt-get -y install iftop #network statistics
+		sudo apt-get -y install entr
+		sudo apt-get -y install iftop
 
 	elif [ $options == "env_settings" ]
 	then

@@ -6,11 +6,11 @@
 pullDocker(){
 	docker pull docker.bintray.io/jfrog/artifactory-cpp-ce
 
-	docker pull sourcerer2/geolocation
-	docker pull sourcerer2/alpinito
-	docker pull sourcerer2/tictactoe:1.1
-
-	docker pull alpine && docker pull httpd && docker pull python && docker pull ubuntu
+	docker pull alpine
+	docker pull httpd
+	docker pull python
+	docker pull ubuntu
+	docker pull mysql
 }
 
 #echo "$USER  ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/$USER

@@ -1,8 +1,5 @@
 #!/bin/bash
 
-#DISCLAIMER:
-# THIS GIGANTIC SCRIPTS WAS MADE FOR A DEBIAN-BASED LINUX DISTRO ALONG WITH GNOME DESKTOP
-
 pullDocker(){
 	docker pull docker.bintray.io/jfrog/artifactory-cpp-ce
 
@@ -102,11 +99,13 @@ do
 
 		echo "INSTALLING SYSTEM MONITOR"
 		echo "*************************"
-		sudo apt-get install -y gnome-system-monitor
+		#sudo apt-get install -y gnome-system-monitor
+		#sudo apt-get install -y plasma-systemmonitor
 
 		echo "INSTALLING DISK UTILITY"
 		echo "***********************"
-		sudo apt-get install -y gnome-disk-utility
+		#sudo apt-get install -y gnome-disk-utility
+		#sudo apt-get install -y partitionmanager
 		sudo apt-get install -y gparted
 		sudo apt-get install -y parted
 

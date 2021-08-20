@@ -93,12 +93,12 @@ do
 		echo "***********************"
 		sudo apt-get -y install wireshark
 
-		echo "INSTALLING BAOBAB"
-		echo "*****************"
-		sudo apt-get install -y baobab
+		#echo "INSTALLING BAOBAB"
+		#echo "*****************"
+		#sudo apt-get install -y baobab
 
-		echo "INSTALLING SYSTEM MONITOR"
-		echo "*************************"
+		#echo "INSTALLING SYSTEM MONITOR"
+		#echo "*************************"
 		#sudo apt-get install -y gnome-system-monitor
 		#sudo apt-get install -y plasma-systemmonitor
 

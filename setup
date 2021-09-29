@@ -84,6 +84,11 @@ do
 		#echo "*****************"
 		#sudo snap install spotify
 
+		#echo "INSTALLING VLC"
+		#echo "**************"
+		#sudo snap install vlc
+		#sudo apt-get -y purge totem totem-plugins
+
 		#echo "INSTALLING TORRENT SERVER"
 		#echo "*************************"
 		#sudo add-apt-repository -y ppa:qbittorrent-team/qbittorrent-stable && sudo apt-get update

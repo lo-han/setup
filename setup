@@ -22,8 +22,7 @@ do
 		echo "	update"
 		echo "	dev_tools"
 		echo "	containers"
-		echo "	cl_tools"
-		echo "	gu_tools"
+		echo "	tools"
 		echo "	shell"
 		echo "	env_settings"
 		echo "	upgrade"
@@ -47,7 +46,7 @@ do
 		#sudo add-apt-repository -y ppa:deadsnakes/ppa
 		sudo apt-get -y install python3 ipython3 python3-pip
 		sudo apt-get -y install gcc gdb moreutils cmake make
-		sudo apt-get -y install git-all vim
+		sudo apt-get -y install git vim
 		sudo apt-get -y install clang
 		sudo snap install valgrind --classic
 		sudo apt-get -y install nasm
@@ -65,14 +64,38 @@ do
 		sudo groupadd docker && sudo gpasswd -a $USER docker
 		#pullDocker
 
-		echo "INSTALLING QEMU"
-		echo "***************"
-		sudo apt-get -y install qemu-system-x86
-		sudo apt-get -y install qemu samba samba-client
+		#echo "INSTALLING QEMU"
+		#echo "***************"
+		#sudo apt-get -y install qemu-system-x86
+		#sudo apt-get -y install qemu samba samba-client
 
-	elif [ $options == "gu_tools" ]
+	elif [ $options == "shell" ]
 	then
-		echo "INSTALLING VSCODE"
+		echo "INSTALLING SHELL"
+		echo "*************************"
+		sudo apt -y update
+		sudo apt -y upgrade
+		sudo apt -y dist-upgrade
+		#sudo apt install -y xserver-xorg kde-plasma-desktop
+		#sudo apt install -y xorg gnome gnome-shell --no-install-recommends
+
+	elif [ $options == "tools" ]
+	then
+
+		echo "INSTALLING NETWORK PACKAGES"
+		echo "***************************"
+		sudo apt-get -y install net-tools
+                sudo apt-get -y install iptables netcat
+		sudo apt-get -y install openssh-client openssh-server
+                sudo apt-get -y install curl wget
+		sudo apt-get -y install traceroute
+
+		echo "INSTALLING UTILITIES"
+		echo "********************"
+		sudo apt-get -y install entr
+		sudo apt-get -y install iftop
+
+                echo "INSTALLING VSCODE"
 		echo "*****************"
 		sudo apt-get -y install code
 
@@ -97,13 +120,14 @@ do
 		echo "INSTALLING WIRESHARK"
 		echo "***********************"
 		sudo apt-get -y install wireshark
+                sudo apt-get -y install tshark
 
-		echo "INSTALLING BAOBAB"
-		echo "*****************"
-		sudo apt-get install -y baobab
+		#echo "INSTALLING BAOBAB"
+		#echo "*****************"
+		#sudo apt-get install -y baobab
 
-		echo "INSTALLING SYSTEM MONITOR"
-		echo "*************************"
+		#echo "INSTALLING SYSTEM MONITOR"
+		#echo "*************************"
 		#sudo apt-get install -y gnome-system-monitor
 		#sudo apt-get install -y plasma-systemmonitor
 
@@ -113,32 +137,6 @@ do
 		#sudo apt-get install -y partitionmanager
 		sudo apt-get install -y gparted
 		sudo apt-get install -y parted
-
-	elif [ $options == "shell" ]
-	then
-		echo "INSTALLING SHELL"
-		echo "*************************"
-		sudo apt -y update
-		sudo apt -y upgrade
-		sudo apt -y dist-upgrade
-		#sudo apt install -y xserver-xorg kde-plasma-desktop
-		#sudo apt install -y xorg gnome gnome-shell --no-install-recommends
-
-	elif [ $options == "cl_tools" ]
-	then
-
-		echo "INSTALLING NETWORK PACKAGES"
-		echo "***************************"
-		sudo apt-get -y install net-tools
-                sudo apt-get -y install iptables netcat
-		sudo apt-get -y install openssh-client openssh-server
-                sudo apt-get -y install curl wget
-		sudo apt-get -y install traceroute
-
-		echo "INSTALLING UTILITIES"
-		echo "********************"
-		sudo apt-get -y install entr
-		sudo apt-get -y install iftop
 
 	elif [ $options == "env_settings" ]
 	then

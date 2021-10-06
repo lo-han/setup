@@ -37,7 +37,11 @@ do
 
 		echo "INSTALLING ESSENTIALS"
 		echo "*********************"
-		sudo apt-get -y install software-properties-common apt-transport-https curl build-essential gpg snapd neofetch #flatpak
+		sudo apt-get -y install software-properties-common
+		sudo apt-get -y instal apt-transport-https curl
+		sudo apt-get -y install build-essential gpg
+		sudo apt-get -y install snapd flatpak
+		sudo apt-get -y install ccrypt neofetch
 
 	elif [ $options == "dev_tools" ]
 	then

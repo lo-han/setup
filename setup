@@ -89,7 +89,7 @@ do
 		echo "INSTALLING NETWORK PACKAGES"
 		echo "***************************"
 		sudo apt-get -y install net-tools
-                sudo apt-get -y install iptables netcat
+                sudo apt-get -y install nmap iptables netcat
 		sudo apt-get -y install openssh-client openssh-server
                 sudo apt-get -y install curl wget
 		sudo apt-get -y install traceroute

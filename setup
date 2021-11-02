@@ -99,9 +99,13 @@ do
 		sudo apt-get -y install entr
 		sudo apt-get -y install iftop
 
-                echo "INSTALLING VSCODE"
-		echo "*****************"
-		sudo apt-get -y install code
+                #echo "INSTALLING VSCODE"
+		#echo "*****************"
+		#sudo apt-get -y install code
+
+		#echo "INSTALLING BLENDER"
+		#echo "******************"
+		#sudo snap install blender --classic
 
 		#echo "INSTALLING BRAVE BROWSER"
 		#echo "************************"
@@ -121,10 +125,10 @@ do
 		#sudo add-apt-repository -y ppa:qbittorrent-team/qbittorrent-stable && sudo apt-get update
 		#sudo apt-get install -y qbittorrent
 
-		echo "INSTALLING WIRESHARK"
-		echo "***********************"
-		sudo apt-get -y install wireshark
-                sudo apt-get -y install tshark
+		#echo "INSTALLING WIRESHARK"
+		#echo "***********************"
+		#sudo apt-get -y install wireshark
+                #sudo apt-get -y install tshark
 
 		#echo "INSTALLING BAOBAB"
 		#echo "*****************"
@@ -149,11 +153,11 @@ do
 		printf "export PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin\n" >> $HOME/.bashrc
 		echo "export PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 
-		printf "export KING='/media/$USER/king'\n" >> $HOME/.bashrc
-		echo "export KING='/media/$USER/king'"
+		echo "alias ll='ls -alF'" >> $HOME/.bashrc
 
-		printf "export STORE='/media/$USER/backup'\n" >> $HOME/.bashrc
-		echo "export STORE='/media/$USER/backup'"
+		printf "export KING='/media/$USER/king'\n" >> $HOME/.bashrc
+		printf "export QUEEN='media/$USER/queen'\n" >> $HOME/.bashrc
+
 
 	elif [ $options == "upgrade" ]
 	then

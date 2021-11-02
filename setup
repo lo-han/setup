@@ -21,6 +21,7 @@ do
 		echo "Options:"
 		echo "	update"
 		echo "	dev_tools"
+                echo "  pip"
 		echo "	containers"
 		echo "	tools"
 		echo "	shell"
@@ -38,10 +39,10 @@ do
 		echo "INSTALLING ESSENTIALS"
 		echo "*********************"
 		sudo apt-get -y install software-properties-common
-		sudo apt-get -y instal apt-transport-https curl
+		sudo apt-get -y install apt-transport-https curl
 		sudo apt-get -y install build-essential gpg
 		sudo apt-get -y install snapd flatpak
-		sudo apt-get -y install ccrypt neofetch
+		sudo apt-get -y install neofetch
 
 	elif [ $options == "dev_tools" ]
 	then
@@ -55,10 +56,12 @@ do
 		sudo snap install valgrind --classic
 		sudo apt-get -y install nasm
 		#sudo apt-get -y install default-jdk default-jre
-		pip3 install virtualenv setuptools build pytest twine black pylint --upgrade
-		sudo pip3 install conan --upgrade
-		python3 -m pip install mypy
-		python3 -m pip install qrcode[pil]
+
+        elif [ $options == "pip" ]
+	then
+                pip3 install virtualenv setuptools build pytest twine black pylint --upgrade
+		pip3 install conan --upgrade
+		pip3 install mypy qrcode[pil] --upgrade
 
 	elif [ $options == "containers" ]
 	then
@@ -75,11 +78,11 @@ do
 
 	elif [ $options == "shell" ]
 	then
-		echo "INSTALLING SHELL"
+		#echo "INSTALLING SHELL"
 		echo "*************************"
-		sudo apt -y update
-		sudo apt -y upgrade
-		sudo apt -y dist-upgrade
+		#sudo apt -y update
+		#sudo apt -y upgrade
+		#sudo apt -y dist-upgrade
 		#sudo apt install -y xserver-xorg kde-plasma-desktop
 		#sudo apt install -y xorg gnome gnome-shell --no-install-recommends
 

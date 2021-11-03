@@ -20,6 +20,7 @@ do
 		echo "Command example: bash setup_env [options]"
 		echo "Options:"
 		echo "	update"
+		echo "  ssh"
 		echo "	dev_tools"
                 echo "  pip"
 		echo "	containers"
@@ -43,6 +44,18 @@ do
 		sudo apt-get -y install build-essential gpg
 		sudo apt-get -y install snapd flatpak
 		sudo apt-get -y install neofetch
+
+	elif [ $options == "ssh" ]
+	then
+		sudo apt-get -y install libpam-google-authenticator
+		auth required pam_google_authenticator.so
+		printf "*****************\n"
+		printf "ATTENTION\nYOU MUST ADD THE FOLLOWING LINE TO /etc/pam.d/sshd:\n"
+		printf "auth required pam_google_authenticator.so\n"
+		printf "AND CHANGE BOTH LINES ON /etc/ssh/sshd_config\n"
+		printf "ChallengeResponseAuthentication yes\nPasswordAuthentication yes\n"
+		printf "\n*****************\n"
+		sudo systemctl restart sshd.service
 
 	elif [ $options == "dev_tools" ]
 	then

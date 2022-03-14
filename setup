@@ -68,7 +68,9 @@ do
 		sudo apt-get -y install clang
 		sudo snap install valgrind --classic
 		sudo apt-get -y install nasm
-		#sudo apt-get -y install default-jdk default-jre
+		sudo apt-get -y install binutils-arm-none-eabi
+		sudo snap install --classic kotlin
+		sudo apt-get -y install default-jdk default-jre
 
         elif [ $options == "pip" ]
 	then
@@ -87,6 +89,7 @@ do
 		#echo "INSTALLING QEMU"
 		#echo "***************"
 		#sudo apt-get -y install qemu-system-x86
+		#sudo apt-get -y install qemu-system-arm
 		#sudo apt-get -y install qemu samba samba-client
 
 	elif [ $options == "shell" ]
@@ -118,6 +121,10 @@ do
                 #echo "INSTALLING VSCODE"
 		#echo "*****************"
 		#sudo apt-get -y install code
+
+		#echo "INSTALLING INTELLIJ"
+		#echo "*******************"
+		#sudo snap install intellij-idea-community --classic
 
 		#echo "INSTALLING BLENDER"
 		#echo "******************"

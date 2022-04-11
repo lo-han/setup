@@ -1,18 +1,5 @@
 #!/bin/bash
 
-pullDocker(){
-	docker pull docker.bintray.io/jfrog/artifactory-cpp-ce
-
-	docker pull alpine
-	docker pull httpd
-	docker pull python
-	docker pull ubuntu
-	docker pull mysql
-}
-
-#echo "$USER  ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/$USER
-
-
 for options in $@
 do
 	if [ $options == "--help" ]
@@ -22,7 +9,6 @@ do
 		echo "	update"
 		echo "  ssh"
 		echo "	dev_tools"
-		echo "	containers"
 		echo "	tools"
 		echo "	shell"
 		echo "	upgrade"
@@ -35,6 +21,10 @@ do
 		echo "************"
 		sudo apt-get -y update
 
+		echo "$USER  ALL=(ALL) NOPASSWD:ALL > /etc/sudoers.d/$USER"
+		echo "************"
+		echo "$USER  ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/$USER
+
 		echo "INSTALLING ESSENTIALS"
 		echo "*********************"
 		sudo apt-get -y install software-properties-common
@@ -42,7 +32,7 @@ do
                 sudo apt-get -y install nmap iptables netcat
 		sudo apt-get -y install apt-transport-https curl wget
 		sudo apt-get -y install traceroute
-		sudo apt-get -y install build-essential gpg
+		sudo apt-get -y install gpg
 		sudo apt-get -y install snapd flatpak
 		sudo apt-get -y install neofetch
 
@@ -63,37 +53,42 @@ do
 	then
 		echo "INSTALLING DEVELOPER TOOLS"
 		echo "**************************"
-		#sudo add-apt-repository -y ppa:deadsnakes/ppa
-		sudo apt-get -y install python3 ipython3 python3-pip
-		sudo apt-get -y install gcc gdb moreutils make
 		sudo apt-get -y install git vim
-		sudo apt-get -y install clang
-		sudo snap install valgrind --classic
-		sudo apt-get -y install nasm
-		sudo apt-get -y install binutils-arm-none-eabi
-		sudo add-apt-repository ppa:team-gcc-arm-embedded/ppa
-		sudo apt-get -y install gcc-arm-none-eabi
-		sudo apt-get -y install mercurial
-		sudo pip3 install mbed-cli
-		sudo apt install -y crossbuild-essential-arm64
 
+		echo "INSTALLING C"
+		echo "************"
+		sudo apt-get -y install build-essential
+		sudo apt-get -y install gcc gdb moreutils make
+		sudo apt-get -y install clang
+		sudo snap install cmake
+		sudo snap install valgrind --classic
+		sudo add-apt-repository ppa:team-gcc-arm-embedded/ppa && sudo apt-get -y install gcc-arm-none-eabi
+
+		echo "INSTALLING PYTHON"
+		echo "*****************"
+		sudo apt-get -y install python3 ipython3 python3-pip
 		pip3 install virtualenv setuptools build pytest twine black pylint --upgrade
 		pip3 install conan --upgrade
 		pip3 install mypy qrcode[pil] --upgrade
 
-	elif [ $options == "containers" ]
-	then
-		echo "INSTALLING DOCKER"
-        	echo "*****************"
-        	sudo apt-get install -y docker.io
-		sudo groupadd docker && sudo gpasswd -a $USER docker
-		#pullDocker
+		echo "INSTALLING COMPILERS"
+		echo "********************"
+		sudo apt-get -y install nasm
+		sudo apt-get -y install binutils-arm-none-eabi
+		sudo apt-get -y install mercurial
+		sudo pip3 install mbed-cli
+		sudo apt install -y crossbuild-essential-arm64
 
 		echo "INSTALLING QEMU"
 		echo "***************"
 		sudo apt-get -y install qemu-system-x86
 		sudo apt-get -y install qemu-system-arm
 		sudo apt-get -y install qemu samba samba-client
+
+		echo "INSTALLING DOCKER"
+        	echo "*****************"
+        	sudo apt-get install -y docker.io
+		sudo groupadd docker && sudo gpasswd -a $USER docker
 
 	elif [ $options == "shell" ]
 	then
@@ -132,9 +127,9 @@ do
 		#echo "*******************"
 		#sudo apt-get -y install libwidevinecdm0 chromium-browser
 
-		#echo "INSTALLING SPOTIFY"
-		#echo "*****************"
-		#sudo snap install spotify
+		echo "INSTALLING SPOTIFY"
+		echo "*****************"
+		sudo snap install spotify
 
 		#echo "INSTALLING VLC"
 		#echo "**************"

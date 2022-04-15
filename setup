@@ -75,6 +75,7 @@ do
 		echo "********************"
 		sudo apt-get -y install nasm
 		sudo apt-get -y install binutils-arm-none-eabi
+		sudo apt-get -y install gcc-arm-linux-gnueabi
 		sudo apt-get -y install mercurial
 		sudo pip3 install mbed-cli
 		sudo apt install -y crossbuild-essential-arm64

@@ -72,6 +72,11 @@ do
 		pip3 install conan --upgrade
 		pip3 install mypy qrcode[pil] --upgrade
 
+		echo "INSTALLING JS"
+		echo "*************"
+		sudo snap install node --classic
+		sudo npm install -g typescript
+
 		echo "INSTALLING COMPILERS"
 		echo "********************"
 		sudo apt-get -y install nasm

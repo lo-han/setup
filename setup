@@ -97,6 +97,10 @@ do
         	sudo apt-get install -y docker.io
 		sudo groupadd docker && sudo gpasswd -a $USER docker
 
+                #echo "INSTALLING AWS CLI"
+		#echo "******************"
+		#sudo snap install aws-cli --classic
+
 	elif [ $options == "shell" ]
 	then
 		#echo "INSTALLING SHELL"

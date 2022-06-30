@@ -134,9 +134,8 @@ do
 		#echo "******************"
 		#sudo snap install postman
 
-		#echo "INSTALLING CHROMIUM"
-		#echo "*******************"
-		#sudo apt-get -y install libwidevinecdm0 chromium-browser
+		
+
 
 		echo "INSTALLING SPOTIFY"
 		echo "*****************"

@@ -126,9 +126,6 @@ do
 		#echo "******************"
 		#sudo snap install blender --classic
 
-		echo "INSTALLING BRAVE BROWSER"
-		echo "************************"
-		sudo snap install brave
 
 		#echo "INSTALLING CHROMIUM"
 		#echo "*******************"

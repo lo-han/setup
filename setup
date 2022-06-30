@@ -126,6 +126,9 @@ do
 		#echo "******************"
 		#sudo snap install blender --classic
 
+                #echo "INSTALLING POSTMAN"
+		#echo "******************"
+		#sudo snap install postman
 
 		#echo "INSTALLING CHROMIUM"
 		#echo "*******************"

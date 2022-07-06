@@ -75,7 +75,7 @@ do
 		echo "INSTALLING JS"
 		echo "*************"
 		sudo snap install node --classic
-		sudo npm install -g typescript
+		sudo npm install -g typescript ts-node-dev
 
 		echo "INSTALLING COMPILERS"
 		echo "********************"

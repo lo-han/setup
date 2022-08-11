@@ -126,6 +126,10 @@ do
 		#echo "*******************"
 		#sudo snap install intellij-idea-community --classic
 
+		#echo "INSTALLING ANDROID STUDIO"
+		#echo "*******************"
+		#sudo snap install android-studio --classic
+
 		echo "INSTALLING BRAVE"
 		echo "******************"
 		sudo snap install brave --classic

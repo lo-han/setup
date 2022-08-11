@@ -126,16 +126,13 @@ do
 		#echo "*******************"
 		#sudo snap install intellij-idea-community --classic
 
-		#echo "INSTALLING BLENDER"
-		#echo "******************"
-		#sudo snap install blender --classic
+		echo "INSTALLING BRAVE"
+		echo "******************"
+		sudo snap install brave --classic
 
                 #echo "INSTALLING POSTMAN"
 		#echo "******************"
 		#sudo snap install postman
-
-		
-
 
 		echo "INSTALLING SPOTIFY"
 		echo "*****************"

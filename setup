@@ -133,10 +133,6 @@ do
 		echo "INSTALLING BRAVE"
 		echo "******************"
 		sudo snap install brave --classic
-		
-		echo "INSTALLING WHATSAPP"
-		echo "*******************"
-		sudo snap install whatsapp-for-linux
 
                 #echo "INSTALLING POSTMAN"
 		#echo "******************"

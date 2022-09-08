@@ -1,0 +1,138 @@
+#!/bin/bash
+
+for options in $@
+do
+	if [ $options == "--help" ]
+	then
+		echo "Command example: bash setup_env [options]"
+		echo "Options:"
+		echo "	update"
+		echo "  sudoers"
+		echo "  ssh"
+		echo "	dev_tools"
+		echo "	tools"
+		echo "	upgrade"
+		echo ""
+		exit 0
+
+	elif [ $options == "sudoers" ]
+	then
+		echo "$USER  ALL=(ALL) NOPASSWD:ALL > /etc/sudoers.d/$USER"
+		echo "************"
+		echo "$USER  ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/$USER
+
+	elif [ $options == "update" ]
+	then
+		echo "UPDATING"
+		echo "************"
+		sudo apt-get -y update
+
+		echo "INSTALLING ESSENTIALS"
+		echo "*********************"
+		sudo apt-get -y install software-properties-common
+		sudo apt-get -y install net-tools
+		sudo apt-get -y install nmap iptables netcat
+		sudo apt-get -y install apt-transport-https curl wget
+		sudo apt-get -y install traceroute
+		sudo apt-get -y install gpg
+		sudo apt-get -y install snapd flatpak
+		sudo apt-get -y install neofetch
+
+	elif [ $options == "ssh" ]
+	then
+		sudo apt-get -y install openssh-client openssh-server
+		sudo apt-get -y install libpam-google-authenticator
+		auth required pam_google_authenticator.so
+		printf "*****************\n"
+		printf "ATTENTION\nYOU MUST ADD THE FOLLOWING LINE TO /etc/pam.d/sshd:\n"
+		printf "auth required pam_google_authenticator.so\n"
+		printf "AND CHANGE BOTH LINES ON /etc/ssh/sshd_config\n"
+		printf "ChallengeResponseAuthentication yes\nPasswordAuthentication yes\n"
+		printf "\n*****************\n"
+		sudo systemctl restart sshd.service
+
+	elif [ $options == "dev_tools" ]
+	then
+		echo "INSTALLING DEVELOPER TOOLS"
+		echo "**************************"
+		sudo apt-get -y install git vim
+
+		echo "INSTALLING DOCKER"
+		echo "*****************"
+		sudo apt-get install -y docker.io
+		sudo groupadd docker && sudo gpasswd -a $USER docker
+
+		echo "INSTALLING C"
+		echo "************"
+		sudo apt-get -y install build-essential
+		sudo apt-get -y install gcc gdb moreutils make
+		sudo apt-get -y install clang
+		sudo snap install cmake
+		sudo snap install valgrind --classic
+		sudo apt-get install -y cppcheck
+		sudo add-apt-repository ppa:team-gcc-arm-embedded/ppa && sudo apt-get -y install gcc-arm-none-eabi
+
+		echo "INSTALLING PYTHON"
+		echo "*****************"
+		sudo apt-get -y install python3 ipython3 python3-pip
+		pip3 install virtualenv setuptools build pytest twine black pylint --upgrade
+		pip3 install conan --upgrade
+		pip3 install mypy qrcode[pil] --upgrade
+
+		echo "INSTALLING JS"
+		echo "*************"
+		sudo snap install node --classic
+		sudo npm install -g typescript ts-node-dev
+
+		echo "INSTALLING COMPILERS"
+		echo "********************"
+		sudo apt-get -y install nasm
+		sudo apt-get -y install binutils-arm-none-eabi
+		sudo apt-get -y install gcc-arm-linux-gnueabi
+		sudo apt-get -y install mercurial
+		sudo pip3 install mbed-cli
+		sudo apt install -y crossbuild-essential-arm64
+
+	elif [ $options == "tools" ]
+	then
+		echo "INSTALLING VSCODE"
+		echo "*****************"
+		sudo apt-get -y install code
+
+		#echo "INSTALLING ANDROID STUDIO"
+		#echo "*******************"
+		#sudo snap install android-studio --classic
+
+		echo "INSTALLING BRAVE"
+		echo "******************"
+		sudo snap install brave --classic
+
+		echo "INSTALLING SPOTIFY"
+		echo "*****************"
+		sudo snap install spotify
+
+		echo "INSTALLING BAOBAB"
+		echo "*****************"
+		sudo apt-get install -y baobab
+
+		echo "INSTALLING SYSTEM MONITOR"
+		echo "*************************"
+		sudo apt-get install -y gnome-system-monitor
+		sudo apt-get install -y plasma-systemmonitor
+
+		echo "INSTALLING DISK UTILITY"
+		echo "***********************"
+		sudo apt-get install -y gnome-disk-utility
+		sudo apt-get install -y partitionmanager
+		sudo apt-get install -y gparted
+		sudo apt-get install -y parted
+
+	elif [ $options == "upgrade" ]
+	then
+		echo "UPGRADING"
+		echo "************"
+		sudo apt-get -y dist-upgrade
+		sudo apt-get -y autoremove
+	fi
+done
+

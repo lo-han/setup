@@ -71,18 +71,13 @@ do
 		sudo snap install valgrind --classic
 		sudo apt-get install -y cppcheck
 		sudo add-apt-repository ppa:team-gcc-arm-embedded/ppa && sudo apt-get -y install gcc-arm-none-eabi
-
-		echo "INSTALLING PYTHON"
-		echo "*****************"
-		sudo apt-get -y install python3 ipython3 python3-pip
-		pip3 install virtualenv setuptools build pytest twine black pylint --upgrade
-		pip3 install conan --upgrade
-		pip3 install mypy qrcode[pil] --upgrade
+                sudo apt-get -y install python3
+                pip3 install conan --upgrade # setuptools build pytest twine black pylint
 
 		echo "INSTALLING JS"
 		echo "*************"
 		sudo snap install node --classic
-		sudo npm install -g typescript ts-node-dev
+		sudo npm install -g typescript ts-node-dev ts-node
 
 		echo "INSTALLING COMPILERS"
 		echo "********************"

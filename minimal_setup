@@ -79,24 +79,20 @@ do
 		sudo snap install node --classic
 		sudo npm install -g typescript ts-node-dev ts-node
 
-		echo "INSTALLING COMPILERS"
-		echo "********************"
-		sudo apt-get -y install nasm
-		sudo apt-get -y install binutils-arm-none-eabi
-		sudo apt-get -y install gcc-arm-linux-gnueabi
-		sudo apt-get -y install mercurial
-		sudo pip3 install mbed-cli
-		sudo apt install -y crossbuild-essential-arm64
+		#echo "INSTALLING COMPILERS"
+		#echo "********************"
+		#sudo apt-get -y install nasm
+		#sudo apt-get -y install binutils-arm-none-eabi
+		#sudo apt-get -y install gcc-arm-linux-gnueabi
+		#sudo apt-get -y install mercurial
+		#sudo pip3 install mbed-cli
+		#sudo apt install -y crossbuild-essential-arm64
 
 	elif [ $options == "tools" ]
 	then
 		echo "INSTALLING VSCODE"
 		echo "*****************"
 		sudo apt-get -y install code
-
-		#echo "INSTALLING ANDROID STUDIO"
-		#echo "*******************"
-		#sudo snap install android-studio --classic
 
 		echo "INSTALLING BRAVE"
 		echo "******************"

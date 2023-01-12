@@ -43,11 +43,6 @@ do
 		echo "**************************"
 		sudo apt-get -y install git vim
 
-		echo "INSTALLING DOCKER"
-		echo "*****************"
-		sudo apt-get install -y docker.io
-		sudo groupadd docker && sudo gpasswd -a $USER docker
-
 		echo "INSTALLING C"
 		echo "************"
 		sudo apt-get -y install build-essential
@@ -66,6 +61,11 @@ do
 		sudo rm -rf /usr/local/go && tar -C /usr/local -xzf $HOME/go1.19.2.linux-amd64.tar.gz
 		export PATH=$PATH:/usr/local/go/bin
 
+		echo "INSTALLING DOCKER"
+		echo "*****************"
+		sudo apt-get install -y docker.io
+		sudo groupadd docker && sudo gpasswd -a $USER docker
+
 		#echo "INSTALLING COMPILERS"
 		#echo "********************"
 		#sudo apt-get -y install nasm
@@ -75,8 +75,6 @@ do
 		#sudo pip3 install mbed-cli
 		#sudo apt install -y crossbuild-essential-arm64
 
-	elif [ $options == "tools" ]
-	then	
 		echo "INSTALLING BRAVE"
 		echo "******************"
 		sudo snap install brave --classic

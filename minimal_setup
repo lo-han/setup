@@ -8,7 +8,6 @@ do
 		echo "Options:"
 		echo "	update"
 		echo "  sudoers"
-		echo "  ssh"
 		echo "	dev_tools"
 		echo "	tools"
 		echo "	upgrade"
@@ -33,23 +32,10 @@ do
 		sudo apt-get -y install net-tools
 		sudo apt-get -y install nmap iptables netcat
 		sudo apt-get -y install apt-transport-https curl wget
-		sudo apt-get -y install traceroute
 		sudo apt-get -y install gpg
 		sudo apt-get -y install snapd flatpak
 		sudo apt-get -y install neofetch
-
-	elif [ $options == "ssh" ]
-	then
-		sudo apt-get -y install openssh-client openssh-server
-		sudo apt-get -y install libpam-google-authenticator
-		auth required pam_google_authenticator.so
-		printf "*****************\n"
-		printf "ATTENTION\nYOU MUST ADD THE FOLLOWING LINE TO /etc/pam.d/sshd:\n"
-		printf "auth required pam_google_authenticator.so\n"
-		printf "AND CHANGE BOTH LINES ON /etc/ssh/sshd_config\n"
-		printf "ChallengeResponseAuthentication yes\nPasswordAuthentication yes\n"
-		printf "\n*****************\n"
-		sudo systemctl restart sshd.service
+		sudo apt-get -y install htop
 
 	elif [ $options == "dev_tools" ]
 	then
@@ -74,11 +60,6 @@ do
                 sudo apt-get -y install python3 python3-pip
                 pip3 install conan --upgrade # setuptools build pytest twine black pylint
 
-		echo "INSTALLING JS"
-		echo "*************"
-		sudo snap install node --classic
-		sudo npm install -g typescript ts-node-dev ts-node
-
 		#echo "INSTALLING COMPILERS"
 		#echo "********************"
 		#sudo apt-get -y install nasm
@@ -89,23 +70,26 @@ do
 		#sudo apt install -y crossbuild-essential-arm64
 
 	elif [ $options == "tools" ]
-	then
-		echo "INSTALLING VSCODE"
-		echo "*****************"
-		sudo apt-get -y install code
-
+	then	
 		echo "INSTALLING BRAVE"
 		echo "******************"
 		sudo snap install brave --classic
 
+		echo "INSTALLING VSCODE"
+		echo "*****************"
+		sudo apt-get -y install code
+
+		echo "INSTALLING DBEAVER"
+		echo "******************"
+		sudo snap install dbeaver-ce
+
+		echo "INSTALLING POSTMAN"
+		echo "******************"
+		sudo snap install postman
+
 		echo "INSTALLING SPOTIFY"
 		echo "*****************"
 		sudo snap install spotify
-
-		echo "INSTALLING SYSTEM MONITOR"
-		echo "*************************"
-		sudo apt-get install -y gnome-system-monitor
-		sudo apt-get install -y plasma-systemmonitor
 
 	elif [ $options == "upgrade" ]
 	then

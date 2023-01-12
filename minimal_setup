@@ -1,105 +1,76 @@
 #!/bin/bash
 
-for options in $@
-do
-	if [ $options == "--help" ]
-	then
-		echo "Command example: bash setup_env [options]"
-		echo "Options:"
-		echo "	update"
-		echo "  sudoers"
-		echo "	dev_tools"
-		echo "	upgrade"
-		echo ""
-		exit 0
+echo "$USER  ALL=(ALL) NOPASSWD:ALL > /etc/sudoers.d/$USER"
+echo "************"
+echo "$USER  ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/$USER
 
-	elif [ $options == "sudoers" ]
-	then
-		echo "$USER  ALL=(ALL) NOPASSWD:ALL > /etc/sudoers.d/$USER"
-		echo "************"
-		echo "$USER  ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/$USER
+echo "UPDATING"
+echo "************"
+sudo apt-get -y update
 
-	elif [ $options == "update" ]
-	then
-		echo "UPDATING"
-		echo "************"
-		sudo apt-get -y update
+echo "INSTALLING ESSENTIALS"
+echo "*********************"
+sudo apt-get -y install software-properties-common
+sudo apt-get -y install net-tools
+sudo apt-get -y install nmap iptables netcat
+sudo apt-get -y install apt-transport-https curl wget
+sudo apt-get -y install gpg
+sudo apt-get -y install snapd flatpak
+sudo apt-get -y install neofetch
+sudo apt-get -y install htop
 
-		echo "INSTALLING ESSENTIALS"
-		echo "*********************"
-		sudo apt-get -y install software-properties-common
-		sudo apt-get -y install net-tools
-		sudo apt-get -y install nmap iptables netcat
-		sudo apt-get -y install apt-transport-https curl wget
-		sudo apt-get -y install gpg
-		sudo apt-get -y install snapd flatpak
-		sudo apt-get -y install neofetch
-		sudo apt-get -y install htop
+echo "INSTALLING DEVELOPER TOOLS"
+echo "**************************"
+sudo apt-get -y install git vim
 
-	elif [ $options == "dev_tools" ]
-	then
-		echo "INSTALLING DEVELOPER TOOLS"
-		echo "**************************"
-		sudo apt-get -y install git vim
+echo "INSTALLING C"
+echo "************"
+sudo apt-get -y install build-essential
+sudo apt-get -y install gcc gdb moreutils make
+sudo apt-get -y install clang
+sudo snap install cmake
+sudo snap install valgrind --classic
+sudo apt-get install -y cppcheck
+sudo add-apt-repository ppa:team-gcc-arm-embedded/ppa && sudo apt-get -y install gcc-arm-none-eabi
+		sudo apt-get -y install python3 python3-pip
+		pip3 install conan --upgrade # setuptools build pytest twine black pylint
 
-		echo "INSTALLING C"
-		echo "************"
-		sudo apt-get -y install build-essential
-		sudo apt-get -y install gcc gdb moreutils make
-		sudo apt-get -y install clang
-		sudo snap install cmake
-		sudo snap install valgrind --classic
-		sudo apt-get install -y cppcheck
-		sudo add-apt-repository ppa:team-gcc-arm-embedded/ppa && sudo apt-get -y install gcc-arm-none-eabi
-                sudo apt-get -y install python3 python3-pip
-                pip3 install conan --upgrade # setuptools build pytest twine black pylint
-		
-		echo "INSTALLING GO"
-		echo "*************"
-		wget -c https://golang.org/dl/go1.19.2.linux-amd64.tar.gz -O $HOME/go1.19.2.linux-amd64.tar.gz
-		sudo rm -rf /usr/local/go && tar -C /usr/local -xzf $HOME/go1.19.2.linux-amd64.tar.gz
-		export PATH=$PATH:/usr/local/go/bin
+echo "INSTALLING GO"
+echo "*************"
+wget -c https://golang.org/dl/go1.19.2.linux-amd64.tar.gz -O $HOME/go1.19.2.linux-amd64.tar.gz
+sudo rm -rf /usr/local/go && tar -C /usr/local -xzf $HOME/go1.19.2.linux-amd64.tar.gz
+export PATH=$PATH:/usr/local/go/bin
 
-		echo "INSTALLING DOCKER"
-		echo "*****************"
-		sudo apt-get install -y docker.io
-		sudo groupadd docker && sudo gpasswd -a $USER docker
+echo "INSTALLING DOCKER"
+echo "*****************"
+sudo apt-get install -y docker.io
+sudo groupadd docker && sudo gpasswd -a $USER docker
 
-		#echo "INSTALLING COMPILERS"
-		#echo "********************"
-		#sudo apt-get -y install nasm
-		#sudo apt-get -y install binutils-arm-none-eabi
-		#sudo apt-get -y install gcc-arm-linux-gnueabi
-		#sudo apt-get -y install mercurial
-		#sudo pip3 install mbed-cli
-		#sudo apt install -y crossbuild-essential-arm64
+#echo "INSTALLING COMPILERS"
+#echo "********************"
+#sudo apt-get -y install nasm
+#sudo apt-get -y install binutils-arm-none-eabi
+#sudo apt-get -y install gcc-arm-linux-gnueabi
+#sudo apt-get -y install mercurial
+#sudo pip3 install mbed-cli
+#sudo apt install -y crossbuild-essential-arm64
 
-		echo "INSTALLING BRAVE"
-		echo "******************"
-		sudo snap install brave --classic
+echo "INSTALLING BRAVE"
+echo "******************"
+sudo snap install brave --classic
 
-		echo "INSTALLING VSCODE"
-		echo "*****************"
-		sudo apt-get -y install code
+echo "INSTALLING VSCODE"
+echo "*****************"
+sudo apt-get -y install code
 
-		echo "INSTALLING DBEAVER"
-		echo "******************"
-		sudo snap install dbeaver-ce
+echo "INSTALLING DBEAVER"
+echo "******************"
+sudo snap install dbeaver-ce
 
-		echo "INSTALLING POSTMAN"
-		echo "******************"
-		sudo snap install postman
+echo "INSTALLING POSTMAN"
+echo "******************"
+sudo snap install postman
 
-		echo "INSTALLING SPOTIFY"
-		echo "*****************"
-		sudo snap install spotify
-
-	elif [ $options == "upgrade" ]
-	then
-		echo "UPGRADING"
-		echo "************"
-		sudo apt-get -y dist-upgrade
-		sudo apt-get -y autoremove
-	fi
-done
-
+echo "INSTALLING SPOTIFY"
+echo "*****************"
+sudo snap install spotify

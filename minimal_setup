@@ -9,7 +9,6 @@ do
 		echo "	update"
 		echo "  sudoers"
 		echo "	dev_tools"
-		echo "	tools"
 		echo "	upgrade"
 		echo ""
 		exit 0

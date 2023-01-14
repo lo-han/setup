@@ -21,7 +21,7 @@ sudo apt-get -y install htop
 
 echo "INSTALLING DEVELOPER TOOLS"
 echo "**************************"
-sudo apt-get -y install git vim
+sudo apt-get -y install git vim gitk
 
 echo "INSTALLING C"
 echo "************"

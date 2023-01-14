@@ -1,8 +1,8 @@
 #!/bin/bash
 
-echo "$USER  ALL=(ALL) NOPASSWD:ALL > /etc/sudoers.d/$USER"
-echo "************"
-echo "$USER  ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/$USER
+#echo "$USER  ALL=(ALL) NOPASSWD:ALL > /etc/sudoers.d/$USER"
+#echo "************"
+#echo "$USER  ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/$USER
 
 echo "UPDATING"
 echo "************"
@@ -38,7 +38,7 @@ pip3 install conan --upgrade # setuptools build pytest twine black pylint
 echo "INSTALLING GO"
 echo "*************"
 wget -c https://golang.org/dl/go1.19.2.linux-amd64.tar.gz -O $HOME/go1.19.2.linux-amd64.tar.gz
-sudo rm -rf /usr/local/go && tar -C /usr/local -xzf $HOME/go1.19.2.linux-amd64.tar.gz
+sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf $HOME/go1.19.2.linux-amd64.tar.gz
 export PATH=$PATH:/usr/local/go/bin
 go version
 
@@ -75,3 +75,8 @@ sudo snap install postman
 echo "INSTALLING SPOTIFY"
 echo "*****************"
 sudo snap install spotify
+
+echo "UPGRADING"
+echo "************"
+sudo apt-get -y dist-upgrade
+sudo apt-get -y autoremove

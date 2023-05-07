@@ -33,7 +33,6 @@ sudo snap install brave --classic
 
 echo "INSTALLING IDE"
 sudo apt-get -y install code
-sudo apt-get -y install vim
 
 echo "INSTALLING DATABASE MANAGER"
 sudo snap install dbeaver-ce

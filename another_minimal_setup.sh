@@ -4,7 +4,7 @@ echo "INSTALLING PACK MANAGERS"
 sudo apt-get -y install apt-transport-https software-properties-common snapd flatpak
 
 echo "INSTALLING NETWORK PACKS"
-sudo apt-get -y install curl wget
+sudo apt-get -y install curl wget net-tools nmap
 
 echo "INSTALLING DOCKER"
 sudo apt-get install -y docker.io docker-compose-plugin
@@ -19,14 +19,21 @@ sudo apt-get -y install git gitk
 echo "INSTALLING AWS CLI"
 sudo snap install aws-cli --classic
 
-echo "INSTALLING ZOOM"
-sudo snap install zoom-client
+# echo "INSTALLING ZOOM"
+# sudo snap install zoom-client
 
 echo "INSTALLING GOLANG"
 wget -c https://golang.org/dl/go1.19.2.linux-amd64.tar.gz -O $HOME/go1.19.2.linux-amd64.tar.gz
 sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf $HOME/go1.19.2.linux-amd64.tar.gz
 export PATH=$PATH:/usr/local/go/bin
 go version
+
+echo "INSTALLING C"
+sudo apt-get -y install build-essential
+sudo apt-get -y install gcc gdb moreutils make
+sudo snap install valgrind --classic
+sudo apt-get install -y cppcheck
+# sudo snap install cmake
 
 echo "INSTALLING BROWSER"
 sudo snap install brave --classic
@@ -37,19 +44,19 @@ sudo apt-get -y install code
 echo "INSTALLING DATABASE MANAGER"
 sudo snap install dbeaver-ce
 
-echo "INSTALLING ADDITIONAL SHELL"
+echo "INSTALLING ZSH"
 sudo apt-get -y install zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 echo "INSTALLING API PLATFORM"
 sudo snap install postman
 
-echo "INSTALLING VISUAL PARADIGM"
-wget -c https://www.visual-paradigm.com/downloads/vp/Visual_Paradigm_Linux64.sh -O $HOME/Downloads
-bash $HOME/Downloads/Visual_Paradigm_Linux64.sh
+# echo "INSTALLING VISUAL PARADIGM"
+# wget -c https://www.visual-paradigm.com/downloads/vp/Visual_Paradigm_Linux64.sh -O $HOME/Downloads
+# bash $HOME/Downloads/Visual_Paradigm_Linux64.sh
 
-echo "INSTALLING SLACK"
-sudo snap install slack
+# echo "INSTALLING SLACK"
+# sudo snap install slack
 
 echo "INSTALLING SPOTIFY"
 sudo snap install spotify
